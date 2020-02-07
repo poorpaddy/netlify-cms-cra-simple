@@ -1,0 +1,36 @@
+{
+  "name": "netlify-cms-cra-simple",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-markdown": "^4.3.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "2.0.4"
+  },
+  "devDependencies": {
+    "glob": "^7.1.4",
+    "gray-matter": "^4.0.2",
+    "js-yaml": "^3.13.1"
+  },
+  "scripts": {
+    "start": "npm run prepare-json && npm run start:app",
+    "start:app": "react-scripts start",
+    "build": "npm run prepare-json && npm run build:app",
+    "build:app": "react-scripts build",
+    "test": "react-scripts test",
+    "prepare-json": "node functions/parse-content.js",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

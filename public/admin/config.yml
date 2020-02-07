@@ -1,0 +1,95 @@
+backend:
+  name: github
+  repo: poorpaddy/netlify-cms-cra-simple
+
+media_folder: "public/images"
+public_folder: "images"
+
+collections:
+  - name: posts
+    label: Post
+    editor:
+      preview: true
+    folder: content/posts
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - {label: Title, name: title, widget: string}
+      - label: 'Status'
+        name: 'status'
+        widget: 'select'
+        options: ["Published", "Featured", "Draft"]
+        default: 'Published'
+      - {label: Date / Order, name: date, widget: date}
+      - {label: Post Featured Image, name: postFeaturedImage, widget: image, required: false}
+      - {label: Excerpt, name: excerpt, widget: text}
+      - {label: Content, name: body, widget: markdown}
+      - label: "Categories"
+        name: "categories"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Category"
+            name: "category"
+            widget: "relation"
+            collection: "postCategories"
+            searchFields: ["title"]
+            valueField: "title"
+      - label: "Meta"
+        required: false
+        name: "meta"
+        widget: "object"
+        fields:
+          - {label: Title, name: title, widget: string, required: false}
+          - {label: Description, name: description, widget: text, required: false, pattern: [".{,300}", "Must not exceed 300 characters"]}
+          - {label: Canonical Link, name: canonicalLink, widget: string, required: false}
+          - {label: Noindex, name: noindex, widget: boolean, required: false}
+  - name: settings
+    label: Settings
+    files:
+      - file: public/manifest.json
+        name: manifest
+        label: 'Manifest Settings'
+        fields:
+          - name: short_name
+            label: 'Short Name'
+            widget: string
+            required: true
+          - name: name
+            label: 'Name'
+            widget: string
+            required: true
+          - name: start_url
+            label: 'Start URL'
+            widget: string
+            default: '.'
+            required: true
+          - name: display
+            label: 'Display Type'
+            widget: string
+            default: 'standalone'
+            required: true
+          - name: theme_color
+            label: 'Theme Color'
+            widget: string
+            default: '#000000'
+            required: true
+          - name: background_color
+            label: 'Theme Color'
+            widget: string
+            default: '#FFFFFF'
+            required: true
+          - name: icons
+            widget: list
+            label: 'Icons'
+            allow_add: true
+            fields:
+              - widget: string
+                name: src
+                label: Source
+              - widget: string
+                name: sizes
+                label: 'Sizes'
+              - widget: string
+                name: type
+                label: 'Mime Type'
